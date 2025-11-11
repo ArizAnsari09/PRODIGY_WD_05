@@ -1,96 +1,519 @@
-body{
-    font-family: 'Comic Sans MS', 'Arial', sans-serif;
-    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-    color: #e0f7fa;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    padding: 2rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    transition: background 0.3s ease-in-out;
+/* ==============================
+   MAIN BACKGROUND STYLES
+============================== */
+body {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #e6f7ff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.5s ease;
 }
 
-input, button{
-    padding: 0.7rem 1.2rem;
-    margin: 0.5rem;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    outline: none;
-    font-family: Arial, Helvetica, sans-serif;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-
+/* ==============================
+   CLOUD ANIMATIONS
+============================== */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  filter: blur(5px);
+  opacity: 0.7;
+  animation: drift 6s ease-in-out infinite;
+  z-index: 0;
 }
 
-input{
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-
+.cloud1 {
+  width: 220px;
+  height: 80px;
+  top: 20%;
+  left: 0;
+  animation: float-left 10s ease-out infinite;
+}
+.cloud2 {
+  width: 180px;
+  height: 60px;
+  top: 40%;
+  left: 0;
+  animation: float-left 12s ease-out infinite;
+}
+.cloud3 {
+  width: 260px;
+  height: 90px;
+  top: 30%;
+  right: 0;
+  animation: float-right 11s ease-out infinite;
+}
+.cloud4 {
+  width: 200px;
+  height: 70px;
+  top: 50%;
+  right: 0;
+  animation: float-right 13s ease-out infinite;
+}
+.cloud5 {
+  width: 240px;
+  height: 85px;
+  top: 0;
+  left: 30%;
+  animation: float-up 12s ease-out infinite;
 }
 
-input::placeholder{
-    color: #aaa;
+@keyframes float-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-60vw);
+  }
+}
+@keyframes float-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(60vw);
+  }
+}
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50vh);
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-input:focus{
-    box-shadow: 0 0 12px #00f2ff;
+/* ==============================
+   UI CONTAINER & INPUT
+============================== */
+.ui-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: reveal 1s ease-out forwards;
+  animation-delay: 1s;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+  margin-left: 20px;
+  padding: 10px;
 }
 
-button{
-    background: linear-gradient(145deg, #00d2ff, #3a7bd5);
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 15px #00f2ff;
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-button:hover{
-    background: linear-gradient(145deg, #3a7bd5, #00d2ff);
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #00f2ff;
+.input-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
-#weather{
-    margin-top: 2rem;
-    padding: 2rem;
-    width: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    display: inline-block;
-    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.25);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    animation: popIn 0.6s ease-out forwards;
-    transition: transform 0.3s ease;
+input {
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  width: 300px;
 }
 
-#weather h2 {
-    margin-bottom: 1rem;
-    color: #00f2ff;
-    font-size: 1.5rem;
+input::placeholder {
+  color: #fff;
 }
 
-#weather p {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
+input:focus {
+  box-shadow: 0 0 15px #00f2ff;
 }
 
-
-#weather:hover{
-    transform: translate(-5px) scale(1.02);
+button {
+  background: linear-gradient(145deg, #00d2ff, #3a7bd5);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+#search {
+  padding: 15px 18px;
+  border-radius: 50%;
+  margin: 0.5rem;
+}
+#location {
+  padding: 15px 30px;
+  border-radius: 10px;
+}
+button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
-@keyframes popIn{
-    from{
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to{
-        opacity: 1;
-        transform: scale(1);
-    }
+/* ==============================
+   DYNAMIC BACKGROUNDS
+============================== */
+body.sunny-bg {
+  background: linear-gradient(120deg, #00c6ff, #0072ff);
+}
+body.cloudy-bg {
+  background: linear-gradient(120deg, #485563, #29323c);
+}
+body.rainy-bg {
+  background: linear-gradient(120deg, #373b44, #4286f4);
+}
+body.thundery-bg {
+  background: linear-gradient(120deg, #141e30, #243b55);
+}
+body.partly-cloudy-bg {
+  background: linear-gradient(120deg, #4facfe, #00f2fe);
+}
+
+/* ==============================
+   UIVERSE WEATHER CARD
+============================== */
+.card {
+  width: 350px;
+  height: 235px;
+  position: relative;
+  padding: 25px;
+  background: radial-gradient(
+      178.94% 106.41% at 26.42% 106.41%,
+      #fff7b1 0%,
+      rgba(255, 255, 255, 0) 71.88%
+    ),
+    #ffffff;
+  box-shadow: 0px 155px 62px rgba(0, 0, 0, 0.01),
+    0px 87px 52px rgba(0, 0, 0, 0.05), 0px 39px 39px rgba(0, 0, 0, 0.09),
+    0px 10px 21px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 23px;
+  transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+  cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.container {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  right: -35px;
+  top: -50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.7);
+}
+.cloud {
+  width: 250px;
+}
+.front {
+  padding-top: 45px;
+  margin-left: 25px;
+  position: absolute;
+  z-index: 11;
+  animation: clouds 8s infinite ease-in-out;
+}
+.back {
+  margin-top: -30px;
+  margin-left: 150px;
+  z-index: 12;
+  animation: clouds 12s infinite ease-in-out;
+}
+.right-front,
+.left-front,
+.right-back,
+.left-back {
+  background-color: #4c9beb;
+  display: inline-block;
+  border-radius: 50%;
+}
+.right-front {
+  width: 45px;
+  height: 45px;
+  border-radius: 50% 50% 50% 0%;
+  margin-left: -25px;
+}
+.left-front {
+  width: 65px;
+  height: 65px;
+  border-radius: 50% 50% 0% 50%;
+}
+.right-back {
+  width: 50px;
+  height: 50px;
+  border-radius: 50% 50% 50% 0%;
+  margin-left: -20px;
+}
+.left-back {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 0% 50%;
+}
+.sun {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(to right, #fcbb04, #fffc00);
+  border-radius: 60px;
+  position: absolute;
+}
+.sunshine {
+  animation: sunshines 2s infinite;
+}
+
+@keyframes sunshines {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+@keyframes clouds {
+  0% {
+    transform: translateX(15px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(15px);
+  }
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card-header span:first-child {
+  font-weight: 800;
+  font-size: 15px;
+  color: rgba(87, 77, 51, 0.66);
+}
+.card-header span:last-child {
+  font-weight: 700;
+  font-size: 15px;
+  color: rgba(87, 77, 51, 0.33);
+}
+
+.temp {
+  position: absolute;
+  left: 25px;
+  bottom: 12px;
+  font-weight: 700;
+  font-size: 64px;
+  color: rgba(87, 77, 51, 1);
+}
+.temp-scale {
+  width: 80px;
+  height: 36px;
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 9px;
+}
+.temp-scale span {
+  font-weight: 700;
+  font-size: 13px;
+  color: rgba(87, 77, 51, 0.66);
+}
+/* Ensure container aligns icons centrally */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transform: scale(0.8);
+  position: absolute;
+  top: 3px;
+  right: -45px;
+  margin: auto;
+}
+
+/* Fix moon visibility and centering */
+.moon {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #f5f3ce, #bdbdbd);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: moon-glow 3s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes moon-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Center rain directly under cloud */
+.cloud-simple {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+
+.rain-drops {
+  position: absolute;
+  top: 70px; /* just below cloud */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.rain-drops span {
+  width: 3px;
+  height: 15px;
+  margin: 0 2px;
+  background: linear-gradient(to bottom, #00bfff, #0077be);
+  border-radius: 2px;
+  animation: rain-fall 0.5s linear infinite;
+}
+
+@keyframes rain-fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+}
+
+/* Adjust lightning to appear under cloud too */
+.lightning-bolt {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 50px;
+  background: yellow;
+  clip-path: polygon(
+    40% 0,
+    60% 0,
+    50% 50%,
+    70% 50%,
+    30% 100%,
+    50% 50%,
+    40% 50%
+  );
+  animation: flash-lightning 1.2s infinite;
+  filter: drop-shadow(0 0 8px yellow);
+  z-index: 4;
+}
+.icon-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.card {
+  margin-top: 30px;
+}
+.weather-icon {
+  width: 64px;
+  height: 64px;
+  stroke-width: 1.5;
+  color: #ffcc00;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.sunny-bg {
+  background: linear-gradient(to bottom, #ffcf33, #ff9933);
+  color: white;
+}
+
+.night-bg {
+  background: linear-gradient(to bottom, #00111a, #003366);
+}
+
+.cloudy-bg {
+  background: linear-gradient(to bottom, #cfd9df, #e2ebf0);
+}
+
+.rainy-bg {
+  background: linear-gradient(to bottom, #3a6073, #16222a);
+}
+
+.thundery-bg {
+  background: linear-gradient(to bottom, #232526, #414345);
+}
+.sunny-icon {
+  animation: spin 12s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.windy-icon {
+  animation: shake 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
 }

@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Weather App</h1>
-    <p>Enter a City name or use your Location:</p>
-    <input type="text" id="cityInput" placeholder="Enter City Name">
-    <button onclick="getWeatherByCity()">Get Weather</button>
-    <button onclick="getWeatherByLocation()">Use My Location</button>
-    <br>
-    <div id="weather"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather X</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ui-container">
+      <h1>Weather X</h1>
+      <p>Enter a City name or use your Location:</p>
+
+      <div class="input-container">
+        <input type="text" id="cityInput" placeholder="Enter City Name" />
+        <button id="search" onclick="getWeatherByCity()"> <i data-feather="search"></i></button>
+      </div>
+
+      <button id="location" onclick="getWeatherByLocation()">Use My Location</button>
+      <div id="weather"></div>
+    </div>
+
+    <!-- Load Feather Icons first -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Then load your JS -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
